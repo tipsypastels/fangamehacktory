@@ -1,0 +1,63 @@
+<h1>
+  Edit your profile
+</h1>
+
+<%= fancy_form model: @user, scope: :user, url: settings_path do |f| %>
+  <label class="attr attr--file">
+    <div class="attr__title">
+      Avatar:
+    </div>
+
+    <%= avatar_for @user, class: 'attr__preview' %>
+
+    <% if @user.respond_to? :avatars %>
+      <%= f.file_field :avatars, 'Upload avatar(s)', multiple: true %>
+    <% else %>
+      <%= f.file_field :avatar, 'Upload avatar' %>
+    <% end %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Age:
+    </div>
+
+    <%= f.number_field :age %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Gender:
+    </div>
+
+    <%= f.text_field :gender %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Location:
+    </div>
+
+    <%= f.text_field :location %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Occupation:
+    </div>
+
+    <%= f.text_field :occupation %>
+  </label>
+
+  <div class="attr attr--text">
+    <div class="attr__title">
+      Biography:
+    </div>
+
+    <%= f.rich_text_area :biography, class: 'no-toolbar' %>
+  </div>
+
+  <div class="attr attr--controls">
+    <%= f.submit 'Save Profile' %>
+  </div>
+<% end %>

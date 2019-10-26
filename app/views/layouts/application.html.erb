@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if content_for? :page_title %>
+        <%= content_for :page_title %> - Fangame Hacktory
+      <% else %>
+        Fangame Hacktory
+      <% end %>
+    </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://www.pokecommunity.com/library/fontawesome-pro-5.8.2-web/js/all.min.js"></script>
+  </head>
+
+  <body>
+    <%= rp 'layouts/navbar' %>
+
+    <div class="container">
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete if false %>
+
+      <% if content_for? :page_title %>
+        <div class="container__title">
+          <%= content_for :page_title %>
+        </div>
+      <% end %>
+
+      <div class="container__main">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

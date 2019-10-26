@@ -1,0 +1,19 @@
+.admin {
+  font-weight: bold;
+  color: $admin-color;
+}
+
+.admin-badge {
+  border: 1px solid $admin-color;
+  display: inline-block;
+  border-radius: 0.25rem;
+  font-style: italic;
+
+  .admin-badge__inner {
+    border: 1px solid white;
+    background-color: $admin-color;
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+  }
+}

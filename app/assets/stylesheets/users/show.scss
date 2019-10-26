@@ -1,0 +1,74 @@
+.users-show {
+  display: flex;
+  flex-direction: column;
+
+  @include on(tablet) {
+    flex-direction: row;
+  }
+
+  .users-show__column {
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .users-show__avatar-area {
+    @include on(tablet) {
+      width: 40%;
+    }
+
+    .users-show__avatar {
+      width: 220px;
+      height: 220px;
+      display: block;
+      margin: auto;
+
+      @include on(tablet) {
+        width: 100%;
+        height: unset;
+      }
+    }
+
+    .users-show__avatar-biography {
+      display: none;
+
+      @include on(tablet) {
+        display: block;
+      }
+    }
+  }
+
+  .users-show__main-area {
+    flex-grow: 1;
+
+    a, h1 {
+      display: block;
+      text-align: center;
+
+      @include on(tablet) {
+        text-align: inherit;
+      }
+    }
+
+    .admin-badge__container {
+      display: block;
+      text-align: center;
+
+      @include on(tablet) {
+        text-align: left;
+      }
+    }
+
+    .users-show__main-biography {
+      display: block;
+      margin-top: 0.5rem;
+
+      @include on(tablet) {
+        display: none;
+      }
+    }
+  }
+
+  .users-show__listings-area {
+    width: 20%;
+  }
+}

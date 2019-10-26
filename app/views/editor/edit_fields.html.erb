@@ -1,0 +1,27 @@
+<%= rl 'editor/container' do %>
+  <%= fancy_form model: @topic, scope: :topic, url: editor_path(@topic), data: { controller: 'fields-editor', action: 'ajax:beforeSend->fields-editor#submit', fields_editor_topic_id: @topic.id } do |f| %>
+    <input type="hidden" id="deleted-field-list" value="" data-target="fields-editor.deletions">
+
+    <% @topic.fields.each do |field| %>
+      <%= fancy_fields_for :field, field do |f| %>
+        <div data-target="fields-editor.field" data-id="<%= field.id %>">
+          <label class="attr attr--text">
+            <div class="attr__title">
+              Field Name:
+            </div>
+
+            <%= f.text_field :name %>
+          </label>
+
+          <div class="attr attr--text">
+            <%= f.rich_text_area :content %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="attr attr--controls attr--no-border-top">
+      <%= f.submit 'Save Changes', class: "topic-bg-color--#{@topic.term}" %>
+    </div>
+  <% end %>
+<% end %>

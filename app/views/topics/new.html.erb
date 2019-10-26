@@ -1,0 +1,36 @@
+<h1>
+  Create a...
+</h1>
+
+<%= fancy_form model: @topic, url: new_topic_path do |f| %>
+  <div class="attr attr--radio">
+    <% Topic.each_creatable_type do |type, i| %>
+      <%= f.radio_button(:type, type.name,
+        icon: type.icon,
+        label: type.name,
+        checked: i == 0,
+        class: "radio-button--#{type.term}"
+      ) %>
+    <% end %>
+  </div>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Title:
+    </div>
+
+    <%= f.text_field :title, autofocus: true %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Description (optional):
+    </div>
+
+    <%= f.rich_text_area :description, class: 'no-toolbar' %>
+  </label>
+
+  <div class="attr attr--controls">
+    <%= f.submit 'Start writing' %>
+  </div>
+<% end %>

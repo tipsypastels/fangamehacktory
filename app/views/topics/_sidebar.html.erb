@@ -1,0 +1,58 @@
+<aside class="topic-sidebar">
+  <% if @topic.draft? %>
+    <div class="topic-sidebar__status">
+      <%= fa :'eye-slash' %>
+      Viewing Draft
+    </div>
+  <% end %>
+
+  <div class="topic-sidebar__branding">
+    <%= link_to topic_path(@topic) do %>
+      <%= avatar_for @topic, class: 'topic-sidebar__branding__avatar' %>
+    <% end %>
+
+    <h1 class="topic-sidebar__branding__title">
+      <%= link_to @topic.title, topic_path(@topic), class: 'hidden-link' %>
+    </h1>
+
+    <table class="topic-sidebar__branding__stats">
+      <tbody>
+        <tr>
+          <th>Type</th>
+          <td class="topic-color--<%= @topic.term %>">
+            <%= topic.type %>
+          </td>
+        <tr>
+          <th>Creator</th>
+          <td>
+            <%= link_to user_path(@topic.creator), class: 'flex flex--align' do %>
+              <%= avatar_for @topic.creator, class: 'avatar--small' %>
+              <%= @topic.creator.username %>
+
+              <% if @topic.is_a? Announcement %>
+                <div class="flex__grow"></div>
+
+                <span class="admin" title="<%= @topic.creator.username %> is an admin">
+                  [A]
+                </span>
+              <% end %>
+            <% end %>
+          </td>
+        <tr>
+          <th>Posted</th>
+          <td><%= time_ago_or_date_in_words @topic.created_at %></td>
+        </tr>
+        <tr>
+          <th>Updated</th>
+          <td><%= time_ago_or_date_in_words @topic.updated_at %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% if block_given? %>
+    <div class="topic-sidebar__yield">
+      <%= yield %>
+    </div>
+  <% end %>
+</aside>

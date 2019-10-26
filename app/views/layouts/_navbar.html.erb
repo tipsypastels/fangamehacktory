@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <%= link_to 'Fangames', root_path, class: 'navbar__brand' %>
+
+  <div class="navbar__links">
+
+  </div>
+
+  <% if Current.user %>
+    <%= link_to user_path(Current.user), class: 'navbar__user' do %>
+      <%= avatar_for Current.user, class: 'navbar__avatar' %>
+    <% end %>
+  <% end %>
+</nav>

@@ -1,0 +1,18 @@
+<% cache topic do %>
+  <div class="topic topic--<%= topic.type.downcase %>">
+    <%= link_to topic_path(topic) do %>
+      <div class="topic__banner" style="background-image: url(<%= url_for topic.banner %>);"></div>
+    <% end %>
+
+    <div class="topic__content" style="background-color: <%= topic.color %>;">
+      <%= link_to topic_path(topic) do %>
+        <%= avatar_for topic, class: 'topic__avatar' %>
+      <% end %>
+
+      <div class="topic__info">
+        <%= link_to topic.title, topic_path(topic), class: 'topic__title' %>
+        <%= link_to topic.creator.username, user_path(topic.creator) %>
+      </div>
+    </div>
+  </div>
+<% end %>

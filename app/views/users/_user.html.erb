@@ -1,0 +1,15 @@
+<div class="user">
+  <%= avatar_for user, class: 'user__avatar' %>
+
+  <div class="user__info">
+    <div class="user__username">
+      <%= user.username %>
+    </div>
+
+    <% if block_given? %>
+      <div class="user__yield">
+        <%= yield %>
+      </div>
+    <% end %>
+  </div>
+</div>

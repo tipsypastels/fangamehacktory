@@ -1,0 +1,12 @@
+$breakpoints: (
+  mobile: 0px,
+  tablet: 768px,
+  browser: 992px,
+  widescreen: 1200px,
+);
+
+@mixin on($size) {
+  @media screen and (min-width: #{map-get($breakpoints, $size)}) {
+    @content;
+  }
+}

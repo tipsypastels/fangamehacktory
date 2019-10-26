@@ -1,0 +1,23 @@
+<%= link_to '[Create Topic]', new_topic_path %>
+
+<% if @pinned_topics.size > 0 %>
+  <section>
+    <h1>
+      Pinned Content
+    </h1>
+
+    <%= rp 'topics/collection', topics: @pinned_topics %>
+  </section>
+<% end %>
+
+<section>
+  <h4 class="secondary-text uppercase">
+    <%= Time.zone.now.strftime "%A, %B %e" %>
+  </h4>
+
+  <h1>
+    Recently Updated
+  </h1>
+
+  <%= rp 'topics/collection', topics: @latest_topics %>
+</section>

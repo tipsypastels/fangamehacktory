@@ -1,0 +1,151 @@
+form {
+  .attr {
+    padding: 0.25rem 1rem;
+    
+    &:not(.attr--no-border-top) {
+      border-top: 1px solid $divider-color;
+    }
+
+    &.attr--text {
+      display: flex;
+      padding: 0.5rem 1rem;
+  
+      .attr__title {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+        color: $secondary-text-color;
+        font-size: 1.1rem;
+        user-select: none;
+      }
+  
+      input {
+        flex-grow: 1;
+        background-color: transparent;
+        color: $primary-text-color;
+        border: none;
+        outline: none !important;
+        font-size: 1rem;
+        padding-top: 6px;
+  
+        &::placeholder {
+          color: $secondary-text-color;
+        }
+
+        &::-webkit-inner-spin-button, 
+        &::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+      }
+
+      .rich-text-area-container {
+        flex-grow: 1;
+        cursor: text;
+      }
+    }
+
+    &.attr--radio {
+      padding: 1rem 0;
+
+      .radio-button {
+        width: 275px;
+        max-width: 100%;
+        display: block;
+
+        input {
+          display: none;
+        }
+
+        .radio-button__display {
+          cursor: pointer;
+          user-select: none;
+          
+          display: flex;
+          align-items: center;
+
+          background-color: $highlight-color;
+          border-radius: 10px;
+          overflow: hidden;
+
+          .radio-button__icon {
+            background-color: $highlight-color-dark;
+            padding: 0.5rem 1rem; 
+          }
+
+          .radio-button__text {
+            padding: 0.5rem;
+          }
+        }
+
+        &:not(:last-child) .radio-button__display {
+          margin-bottom: 0.5rem; 
+        }
+
+        input:checked + .radio-button__display {
+          .radio-button__icon {
+            background-color: $primary-color;
+          }
+        }
+
+        @each $type, $color in $topic-colors {
+          &.radio-button--#{$type} {
+            input:checked + .radio-button__display {
+              .radio-button__icon {
+                background-color: $color;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.attr--controls {
+      padding: 1rem;
+
+      button, input[type='submit'] {
+        display: block;
+        background-color: $primary-color;
+        color: $primary-text-color;
+        border: none;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+    }
+
+    &.attr--file {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+  
+      .attr__title {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+        color: $secondary-text-color;
+        font-size: 1.1rem;
+        user-select: none;
+      }
+
+      .attr__preview {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        margin: 0 0.5rem;
+      }
+  
+      input {
+        display: none;
+      }
+    }
+  }
+
+  .note {
+    padding: 0 0.5rem;
+    color: $secondary-text-color;
+
+    &.note--mb {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

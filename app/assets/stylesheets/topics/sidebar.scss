@@ -1,0 +1,33 @@
+.topic-sidebar {
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+
+  .topic-sidebar__status {
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    padding: 0.25rem 0;
+    text-align: center;
+    background-color: $important-color;
+  }
+
+  .topic-sidebar__branding {
+    margin-bottom: 1rem;
+
+    .topic-sidebar__branding__avatar {
+      width: 220px;
+      height: 220px;
+      display: block;
+      margin: auto;
+    }
+
+    .topic-sidebar__branding__title {
+      text-align: center;
+      margin: 0.5rem 0;
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}

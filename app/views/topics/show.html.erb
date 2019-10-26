@@ -1,0 +1,29 @@
+<div class="topics-show">
+  <%= rp 'topics/sidebar', topic: @topic %>
+
+  <main class="topics-show__main">
+    <% if @topic.editable? %>
+      <%= link_to "[Edit]", editor_path(@topic) %>
+    <% end %>
+
+    <% if Current.admin && @topic.published? %>
+      <% if @topic.pinned? %>
+        <%= link_to "[Unpin]", topic_admin_unpin_path(@topic), method: :patch %>
+      <% else %>
+        <%= link_to "[Pin]", topic_admin_pin_path(@topic), method: :patch %>
+      <% end %>
+    <% end %>
+
+    <h1 class="topics-show__title">
+      <%= @topic.title %>
+    </h1>
+
+    <% if @topic.description.present? %>
+      <h3 class="secondary-text">
+        <%= @topic.description %>
+      </h3>
+    <% end %>
+
+    <%= rp 'topics/fields', topic: @topic %>
+  </main>
+</div>

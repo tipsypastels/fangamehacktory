@@ -1,0 +1,40 @@
+<div class="users-show">
+  <div class="users-show__column users-show__avatar-area">
+    <%= avatar_for @user, class: 'users-show__avatar' %>
+
+    <% if @user.biography.present? %>
+      <div class="users-show__avatar-biography">
+        <%= @user.biography %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="users-show__column users-show__main-area">
+    <% if Current.user == @user %>
+      <%= link_to '[Edit Profile]', settings_path %>
+    <% end %>
+
+    <h1>
+      <%= @user.username %>
+    </h1>
+
+    <%= rp 'users/admins/badge' if @user.admin? %>
+
+    <% if @user.biography.present? %>
+      <div class="users-show__main-biography">
+        <%= @user.biography %>
+      </div>
+    <% end %>
+
+    <table class="my">
+      <%= tr_key_value 'Age', @user.age %>
+      <%= tr_key_value 'Gender', @user.gender %>
+      <%= tr_key_value 'Location', @user.location %>
+      <%= tr_key_value 'Occupation', @user.occupation %>
+    </table>
+  </div>
+
+  <div class="users-show__column users-show__listings-area">
+
+  </div>
+</div>
