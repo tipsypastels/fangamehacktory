@@ -14,15 +14,19 @@
 #  index_pokemons_on_slug  (slug) UNIQUE
 #
 
-class Pokemon < ApplicationRecord
-  extend FriendlyId
-  friendly_id :species, use: :slugged
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-  has_many :forms, class_name: 'Pokemon::Form'
+bulbasaur:
+  slug: bulbasaur
+  species: Bulbasaur
+  vanilla: true
 
-  validates :species, presence: true
+ivysaur:
+  slug: ivysaur
+  species: Ivysaur
+  vanilla: true
 
-  def custom?
-    not vanilla?
-  end
-end
+venusaur:
+  slug: venusaur
+  species: Venusaur
+  vanilla: true

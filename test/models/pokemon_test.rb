@@ -14,15 +14,10 @@
 #  index_pokemons_on_slug  (slug) UNIQUE
 #
 
-class Pokemon < ApplicationRecord
-  extend FriendlyId
-  friendly_id :species, use: :slugged
+require 'test_helper'
 
-  has_many :forms, class_name: 'Pokemon::Form'
-
-  validates :species, presence: true
-
-  def custom?
-    not vanilla?
-  end
+class PokemonTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

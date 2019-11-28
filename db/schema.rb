@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_102455) do
+ActiveRecord::Schema.define(version: 2019_11_28_205418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,26 +57,54 @@ ActiveRecord::Schema.define(version: 2019_11_25_102455) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "fakemons", force: :cascade do |t|
-    t.integer "game_id"
-    t.string "slug"
-    t.string "name"
-    t.string "type1"
-    t.string "type2"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["slug"], name: "index_fakemons_on_slug", unique: true
-  end
-
   create_table "games", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "pokedex"
   end
 
   create_table "memos", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pokedexes", force: :cascade do |t|
+    t.string "name"
+    t.integer "game_id"
+    t.boolean "template", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pokemon_forms", force: :cascade do |t|
+    t.string "name"
+    t.string "type1"
+    t.string "type2"
+    t.boolean "vanilla", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "smogon_sprite_slug"
+    t.integer "pokemon_id"
+  end
+
+  create_table "pokemon_presences", force: :cascade do |t|
+    t.integer "pokedex_id"
+    t.integer "form_id"
+    t.integer "regional_position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "customized_name"
+    t.string "customized_type1"
+    t.string "customized_type2"
+    t.integer "national_position"
+  end
+
+  create_table "pokemons", force: :cascade do |t|
+    t.string "species"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "vanilla", default: false
+    t.index ["slug"], name: "index_pokemons_on_slug", unique: true
   end
 
   create_table "poll_options", force: :cascade do |t|

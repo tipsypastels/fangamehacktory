@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: memos
+#
+#  id         :bigint           not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Memo < ApplicationRecord
   include Subjected
 

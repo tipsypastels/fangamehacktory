@@ -28,7 +28,6 @@ gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
-gem 'annotate'
 gem 'ancestry'
 gem 'friendly_id'
 gem 'active_link_to'
@@ -55,6 +54,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'bullet'
   gem 'faker'
+  gem 'annotate'
 end
 
 group :test do

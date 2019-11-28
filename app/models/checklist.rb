@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: checklists
+#
+#  id         :bigint           not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  subject_id :integer
+#
+
 class Checklist < ApplicationRecord
   has_rich_text :content
 

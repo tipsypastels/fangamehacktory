@@ -1,21 +1,17 @@
 # == Schema Information
 #
-# Table name: fields
+# Table name: pokedexes
 #
-#  id         :integer          not null, primary key
-#  topic_id   :integer
+#  id         :bigint           not null, primary key
 #  name       :string
+#  template   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  position   :integer
+#  game_id    :integer
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  topic_id: 1
-  name: MyString
-
-two:
-  topic_id: 1
-  name: MyString
+kanto:
+  name: Kanto Pokedex
+  template: true

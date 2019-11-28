@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: poll_options
+#
+#  id         :bigint           not null, primary key
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  poll_id    :integer
+#
+
 class Poll::Option < ApplicationRecord
   default_scope { includes(:votes) }
 

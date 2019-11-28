@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: polls
+#
+#  id         :bigint           not null, primary key
+#  status     :integer          default("open")
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  subject_id :integer
+#
+
 class Poll < ApplicationRecord
   default_scope { includes(:options) }
   scope :open, -> { where(status: :open) }

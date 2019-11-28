@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: subjects
+#
+#  id             :bigint           not null, primary key
+#  color          :string           default("#1c1c1e")
+#  pinned         :boolean          default(FALSE)
+#  slug           :string
+#  status         :integer          default("draft")
+#  subjected_type :string
+#  title          :string
+#  views_count    :integer          default(0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  subjected_id   :integer
+#  team_id        :integer
+#  user_id        :integer
+#
+# Indexes
+#
+#  index_subjects_on_slug                             (slug) UNIQUE
+#  index_subjects_on_subjected_id_and_subjected_type  (subjected_id,subjected_type)
+#
+
 class Subject < ApplicationRecord
   include Identity, Status, Scoped, Widgeted
   include Subscribable, Viewable, Pollable

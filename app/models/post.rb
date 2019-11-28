@@ -2,12 +2,12 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  topic_id   :integer
+#  id         :bigint           not null, primary key
 #  ancestry   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  subject_id :integer
+#  user_id    :integer
 #
 # Indexes
 #

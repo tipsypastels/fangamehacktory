@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: pokemon_presences
+#
+#  id                :bigint           not null, primary key
+#  customized_name   :string
+#  customized_type1  :string
+#  customized_type2  :string
+#  national_position :integer
+#  regional_position :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  form_id           :integer
+#  pokedex_id        :integer
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bulbasaur_in_kanto:
+  pokedex: kanto
+  form: bulbasaur
+  regional_position: 1
+  national_position: 1
+
+ivysaur_in_kanto:
+  pokedex: kanto
+  form: ivysaur
+  regional_position: 2
+  national_position: 2
+
+venusaur_in_kanto:
+  pokedex: kanto
+  form: venusaur
+  regional_position: 3
+  national_position: 3
+
+venusaur_mega_in_kanto:
+  pokedex: kanto
+  form: venusaur_mega
+  regional_position: 4
+  national_position: 4

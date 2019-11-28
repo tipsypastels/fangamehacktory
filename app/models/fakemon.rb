@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: fakemons
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  slug       :string
+#  type1      :string
+#  type2      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  game_id    :integer
+#
+# Indexes
+#
+#  index_fakemons_on_slug  (slug) UNIQUE
+#
+
 class Fakemon < ApplicationRecord
   include Pokemon::Helpers
 
