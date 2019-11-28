@@ -1,0 +1,7 @@
+<div class="row <%= row.css_class %> <%= row.centered_css_classes %>" style="width: <%= row.width %>; --gutters: <%= row.gutters %>;">
+  <% row.columns.each do |column| %>
+    <div class="row__column <%= 'row__column--expand' if column.expand %>" style="width: <%= column.width %>;">
+      <%= column %>
+    </div>
+  <% end %>
+</div>

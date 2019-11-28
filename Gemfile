@@ -5,8 +5,8 @@ ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use pg as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -32,8 +32,16 @@ gem 'annotate'
 gem 'ancestry'
 gem 'friendly_id'
 gem 'active_link_to'
-gem 'will_paginate'
+gem 'will_paginate', '3.1.7'
 gem 'acts_as_list'
+gem 'chartkick'
+gem 'groupdate'
+gem 'maxminddb'
+gem 'dotenv-rails'
+gem 'react-rails'
+gem 'acts_as_api'
+gem "components", git: "https://github.com/jensljungblad/components.git"
+gem "styleguide", git: "https://github.com/jensljungblad/styleguide.git"
 
 gem 'wdm' if Gem.win_platform?
 
@@ -46,6 +54,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'bullet'
+  gem 'faker'
 end
 
 group :test do

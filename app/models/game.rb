@@ -1,32 +1,30 @@
-# == Schema Information
-#
-# Table name: topics
-#
-#  id         :integer          not null, primary key
-#  type       :string
-#  title      :string
-#  user_id    :integer
-#  status     :integer          default("0")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  slug       :string
-#  color      :string           default("#1c1c1e")
-#  pinned     :boolean          default("0")
-#  team_id    :integer
-#
-# Indexes
-#
-#  index_topics_on_slug  (slug) UNIQUE
-#
+class Game < ApplicationRecord
+  include Subjected
 
-class Game < Topic
+  has_many :fakemon
+  accepts_nested_attributes_for :fakemon, allow_destroy: true
+
+  def pokedex
+    @pokedex ||= Pokedex.new(self['pokedex'], self)
+  end
+
   def self.icon
     :gamepad
   end
 
-  private
+  def default_fields
+    @default_fields ||= {
+      introduction: "Use this space to introduce others to your game!",
+      story: "Dazzle others with your plot writing.",
+      screenshots: "Drag and drop to upload into the editor.",
+      features: "What makes your game unique?",
+      pokedex: "{{widget pokedex}}",
+    }.with_indifferent_access
+  end
 
-  def auto_creatable_fields
-    ['introduction', 'story', 'team', 'screenshots', 'progress' => 'widget:progress']
+  def supported_widgets
+    @supported_widgets ||= {
+      pokedex: PokedexWidgetComponent,
+    }.with_indifferent_access
   end
 end

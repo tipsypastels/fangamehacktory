@@ -1,0 +1,5 @@
+<%= rl 'editor/container' do %>
+  <%= react_component('PollEditor',
+    polls: @subject.polls.as_api_response(:public)
+  ) %>
+<% end %>

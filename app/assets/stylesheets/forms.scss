@@ -3,7 +3,7 @@ form {
     padding: 0.25rem 1rem;
     
     &:not(.attr--no-border-top) {
-      border-top: 1px solid $divider-color;
+      border-top: 1px solid var(--divider-color);
     }
 
     &.attr--text {
@@ -13,7 +13,7 @@ form {
       .attr__title {
         font-size: 1rem;
         margin-right: 0.5rem;
-        color: $secondary-text-color;
+        color: var(--secondary-text-color);
         font-size: 1.1rem;
         user-select: none;
       }
@@ -21,14 +21,14 @@ form {
       input {
         flex-grow: 1;
         background-color: transparent;
-        color: $primary-text-color;
+        color: var(--primary-text-color);
         border: none;
         outline: none !important;
         font-size: 1rem;
         padding-top: 6px;
   
         &::placeholder {
-          color: $secondary-text-color;
+          color: var(--secondary-text-color);
         }
 
         &::-webkit-inner-spin-button, 
@@ -63,12 +63,12 @@ form {
           display: flex;
           align-items: center;
 
-          background-color: $highlight-color;
+          background-color: var(--highlight-color);
           border-radius: 10px;
           overflow: hidden;
 
           .radio-button__icon {
-            background-color: $highlight-color-dark;
+            background-color: var(--highlight-color-dark);
             padding: 0.5rem 1rem; 
           }
 
@@ -83,19 +83,19 @@ form {
 
         input:checked + .radio-button__display {
           .radio-button__icon {
-            background-color: $primary-color;
+            background-color: var(--primary-color);
           }
         }
 
-        @each $type, $color in $topic-colors {
-          &.radio-button--#{$type} {
-            input:checked + .radio-button__display {
-              .radio-button__icon {
-                background-color: $color;
-              }
-            }
-          }
-        }
+        // @each $type, $color in $subject-colors {
+        //   &.radio-button--#{$type} {
+        //     input:checked + .radio-button__display {
+        //       .radio-button__icon {
+        //         background-color: var(--color);
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
 
@@ -104,8 +104,8 @@ form {
 
       button, input[type='submit'] {
         display: block;
-        background-color: $primary-color;
-        color: $primary-text-color;
+        background-color: var(--primary-color);
+        color: var(--primary-text-color);
         border: none;
         font-size: 1rem;
         padding: 0.5rem 1rem;
@@ -114,35 +114,56 @@ form {
     }
 
     &.attr--file {
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
+      .attr--file__picker {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+
+        .attr__title {
+          font-size: 1rem;
+          margin-right: 0.5rem;
+          color: var(--secondary-text-color);
+          font-size: 1.1rem;
+          user-select: none;
+        }
   
-      .attr__title {
-        font-size: 1rem;
-        margin-right: 0.5rem;
-        color: $secondary-text-color;
-        font-size: 1.1rem;
-        user-select: none;
+        .attr__preview {
+          height: 25px;
+          width: 25px;
+          border-radius: 50%;
+          margin: 0 0.5rem;
+        }
+    
+        input {
+          display: none;
+        }
       }
 
-      .attr__preview {
-        height: 25px;
-        width: 25px;
-        border-radius: 50%;
-        margin: 0 0.5rem;
-      }
-  
-      input {
-        display: none;
+      .attr--file__crop {
+        border: 4px dashed var(--primary-color);
+        border-radius: 10px;
+        padding: 0.25rem;
+        margin-bottom: 0.5rem;
+        
+        width: fit-content;
+        width: -moz-fit-content;
+        width: -ms-fit-content;
+        width: -webkit-fit-content;
+
+        .attr--file__crop__ar {
+          font-style: italic;
+          color: var(--secondary-text-color);
+          font-size: 0.9rem;
+          padding: 0.25rem 0.75rem;
+        }
       }
     }
   }
 
   .note {
     padding: 0 0.5rem;
-    color: $secondary-text-color;
+    color: var(--secondary-text-color);
 
     &.note--mb {
       margin-bottom: 0.5rem;

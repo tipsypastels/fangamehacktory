@@ -1,0 +1,25 @@
+<div class="contextbar">
+  <%= contextbar.authorship %>
+
+  <% if contextbar.description %>
+    <p><%= contextbar.description %></p>
+  <% end %>
+
+  <% if contextbar.actions.present? %>
+    <div class="contextbar__actions">
+      <% contextbar.actions.each do |action| %>
+        <% if action.divider? %>
+          <div class="contextbar__divider"></div>
+        <% else %>
+          <%= action.link do %>
+            <div class="contextbar__action__name">
+              <%= action.name %>
+            </div>
+
+            <%= action.icon %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

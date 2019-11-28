@@ -1,9 +1,5 @@
 <%= rl 'editor/container' do %>
-  <%= fancy_form model: @topic, scope: :topic, url: editor_path(@topic) do |f| %>
-    <div class="note note--mb">
-      Go to <%= link_to 'fields', edit_fields_path(@topic) %> to edit the written content of your <%= @topic.term %>.
-    </div>
-
+  <%= fancy_form model: @subject, scope: :subject, url: editor_path(@subject) do |f| %>
     <label class="attr attr--text">
       <div class="attr__title">
         Title:
@@ -11,6 +7,24 @@
 
       <%= f.text_field :title %>
     </label>
+
+    <div class="attr attr--radio">
+      <%= f.radio_button(:status, :draft, 
+        icon: :'eye-slash',
+        label: "Draft #{@subject.term}.",
+        checked: @subject.draft?,
+      ) %>
+
+      <%= f.radio_button(:status, :published, 
+        icon: :eye,
+        label: "Public #{@subject.term}.",
+        checked: @subject.published?,
+      ) %>
+
+      <div class="note">
+        Your drafts are only visible to you.
+      </div>
+    </div>
 
     <div class="attr attr--text">
       <div class="attr__title">
@@ -20,26 +34,16 @@
       <%= f.rich_text_area :description, class: 'no-toolbar' %>
     </div>
 
-    <div class="attr attr--radio">
-      <%= f.radio_button(:status, :draft, 
-        icon: :'eye-slash',
-        label: "Draft #{@topic.term}.",
-        checked: @topic.draft?,
-      ) %>
-
-      <%= f.radio_button(:status, :published, 
-        icon: :eye,
-        label: "Public #{@topic.term}.",
-        checked: @topic.published?,
-      ) %>
-
-      <div class="note">
-        Your drafts are only visible to you.
+    <div class="attr attr--text">
+      <div class="attr__title">
+        Content:
       </div>
+
+      <%= f.rich_text_area :content %>
     </div>
 
     <div class='attr attr--controls'>
-      <%= f.submit 'Save Changes', class: "topic-bg-color--#{@topic.term}" %>
+      <%= f.submit 'Save Changes', class: "subject-bg-color--#{@subject.css_class}" %>
     </div>
   <% end %>
 <% end %>

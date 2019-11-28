@@ -16,4 +16,5 @@
 
 class Post < ApplicationRecord
   has_ancestry
+  has_creator
 end

@@ -4,9 +4,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .secondary-text {
-  margin-bottom: 0;
-  color: $secondary-text-color;
+  color: var(--secondary-text-color);
   font-weight: normal;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .uppercase {

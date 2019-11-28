@@ -1,0 +1,26 @@
+.box {
+  margin: 3rem auto;
+  max-width: 100%;
+  
+  &.box--small {
+    width: 400px;
+  }
+  
+  &.box--medium {
+    width: 800px;
+  }
+
+  &.box--large {
+    width: 1110px;
+  }
+
+  .box__title {
+    font-size: 2rem;
+    line-height: 1.4rem;
+    margin-left: 1rem;
+  }
+  
+  .box__content {
+    padding: 0.5rem 1rem;
+  }
+}

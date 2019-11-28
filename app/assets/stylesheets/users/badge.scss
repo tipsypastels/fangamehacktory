@@ -1,0 +1,16 @@
+.badge {
+  .badge__inner1 {
+    border: 1px solid var(--color);
+    display: inline-block;
+    border-radius: 0.25rem;
+    font-style: italic;
+
+    .badge__inner2 {
+      border: 1px solid white;
+      background-color: var(--color);
+      color: white;
+      border-radius: 0.25rem;
+      padding: 0 1rem;
+    }
+  }
+}

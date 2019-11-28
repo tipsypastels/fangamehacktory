@@ -1,0 +1,19 @@
+<%= rl 'editor/container' do %>
+  <section>
+    <h2>
+      Total Views
+    </h2>
+
+    <%= line_chart @subject.views.per_day, colors: ['#3b82f6'] %>
+  </section>
+
+  <section>
+    <h2>
+      Views by Country
+    </h2>
+
+    <div class="geo-chart">
+      <%= geo_chart @subject.views.per_country, adapter: 'google' %>
+    </div>
+  </section>
+<% end %>

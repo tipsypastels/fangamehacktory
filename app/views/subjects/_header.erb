@@ -1,0 +1,21 @@
+<%= component :headline, title: subject.title do |h| %>
+  <%= h.action name: 'Read', to: subject %>
+  <%= h.action name: 'Edit', to: editor_path(subject) if subject.editable? %>
+<% end %>
+
+<%= component :statbox, image: subject.avatar do |s| %>
+  <%= s.stat 'Type', subject.human_name, 
+    css_class: "subject-color--#{subject.css_class}" %>
+
+  <%= s.stat 'Creator' do %>
+  <% end %>
+
+  <% if false %>
+    <%= s.stat 'Team' do %>
+      <%= component :userbit, user: subject.team %>
+    <% end %>
+  <% end %>
+
+  <%= s.stat 'Posted', time_ago_or_date_in_words(subject.created_at) %>
+  <%= s.stat 'Updated', time_ago_or_date_in_words(subject.updated_at) %>
+<% end %>

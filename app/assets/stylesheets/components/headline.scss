@@ -1,0 +1,31 @@
+.headline {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  
+  .headline__header {
+    display: flex;
+    align-items: center;
+    
+    border-bottom: 1px solid var(--divider-color);
+    margin-bottom: 1rem;
+
+    .headline__title {
+      flex-grow: 1;
+      font-size: 1.6rem;
+    }
+  
+    .headline__actions {
+      a {
+        color: var(--secondary-text-color);
+  
+        &.active {
+          color: var(--primary-text-color);
+        }
+  
+        &:not(:last-child) {
+          margin-right: 0.25rem;
+        }
+      }
+    }
+  }
+}

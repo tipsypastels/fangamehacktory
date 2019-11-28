@@ -1,21 +1,22 @@
 module TableHelper
-  def tr_key_value(key, value, required: false)
-    return unless value.present?
+  def tr_key_value(key, value = nil, required: false, **opts, &block)
     if value.blank?
-      if required
+      if required && !block_given?
         raise ArgumentError, "#{value} cannot be a value in a required tr_key_value"
+      elsif block_given?
+        value = capture(&block)
       else
         return
       end
     end
 
     <<~HTML.html_safe
-      <tr>
-        <th>
+      <tr class="#{opts.delete(:class)}">
+        <th class="#{opts.delete(:th_class)}">
           #{key}
         </th>
         
-        <td>
+        <td class="#{opts.delete(:td_class)}">
           #{value}
         </td>
       </tr>

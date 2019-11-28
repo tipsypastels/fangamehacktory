@@ -1,6 +1,7 @@
 a, .link-color {
-  color: $link-color;
+  color: var(--link-color);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .hidden-link {
@@ -9,8 +10,8 @@ a, .link-color {
 }
 
 .button-link {
-  background-color: $highlight-color;
-  color: $link-color;
+  background-color: var(--highlight-color);
+  color: var(--link-color);
   text-align: center;
   
   display: block;
@@ -21,7 +22,7 @@ a, .link-color {
   }
 
   &.active {
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     color: white;
   }
 }

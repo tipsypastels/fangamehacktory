@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action { Current.user = current_user }
+  before_action :set_currents
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_currents
+    Current.user = current_user
+    Current.request_id = request.uuid
+    Current.user_agent = request.user_agent
+    Current.ip_address = request.ip
+  end
 
   def authenticate_admin!
     redirect_to root_path unless Current.admin

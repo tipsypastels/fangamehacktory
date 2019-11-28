@@ -1,6 +1,7 @@
 .users-show {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 
   @include on(tablet) {
     flex-direction: row;
@@ -49,7 +50,7 @@
       }
     }
 
-    .admin-badge__container {
+    .badge {
       display: block;
       text-align: center;
 

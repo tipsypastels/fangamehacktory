@@ -1,0 +1,14 @@
+<div class="headline">
+  <header class="headline__header">
+    <h1 class="headline__title font-display">
+      <%= headline.title %>
+    </h1>
+
+    <div class="headline__actions">
+      <% headline.actions.each do |action| %>
+        <%= active_link_to action.name, action.to, 
+          active: action.active %>
+      <% end %>
+    </div>
+  </header>
+</div>

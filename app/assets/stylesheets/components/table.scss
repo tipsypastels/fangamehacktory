@@ -1,0 +1,19 @@
+.table {
+  width: 100%;
+
+  tr {
+    &:nth-child(odd) {
+      background-color: var(--highlight-color);
+    }
+
+    th {
+      text-align: left;
+      font-weight: normal;
+    }
+
+    th, td {
+      padding: 0.25rem 0.5rem;
+      margin: 0;
+    }
+  }
+}

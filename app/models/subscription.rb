@@ -10,6 +10,6 @@
 #
 
 class Subscription < ApplicationRecord
-  belongs_to :topic
+  belongs_to :subject
   belongs_to :user, default: -> { Current.user }
 end

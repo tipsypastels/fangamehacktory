@@ -11,8 +11,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  username               :string
-#  posts_count            :integer
-#  topics_count           :integer
+#  posts_count            :integer          default("0")
+#  topics_count           :integer          default("0")
 #  type                   :string           default("Member")
 #  location               :string
 #  gender                 :string

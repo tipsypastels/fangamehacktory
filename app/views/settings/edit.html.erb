@@ -9,12 +9,7 @@
     </div>
 
     <%= avatar_for @user, class: 'attr__preview' %>
-
-    <% if @user.respond_to? :avatars %>
-      <%= f.file_field :avatars, 'Upload avatar(s)', multiple: true %>
-    <% else %>
-      <%= f.file_field :avatar, 'Upload avatar' %>
-    <% end %>
+    <%= f.file_field :avatar, 'Upload avatar' %>
   </label>
 
   <label class="attr attr--text">

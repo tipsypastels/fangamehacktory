@@ -1,0 +1,11 @@
+<table class="table">
+  <% table.rows.each do |row| %>
+    <tr>
+      <td><%= row.name %></td>
+
+      <td class="<%= row.css_class %>">
+        <%= row.value || row %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,50 @@
+<aside class="subject-sidebar">
+  <% if @subject.draft? %>
+    <div class="subject-sidebar__status">
+      <%= fa :'eye-slash' %>
+      Viewing Draft
+    </div>
+  <% end %>
+
+  <div class="subject-sidebar__branding">
+    <%= link_to subject_path(@subject) do %>
+      <%= avatar_for @subject, class: 'subject-sidebar__branding__avatar' %>
+    <% end %>
+
+    <table class="subject-sidebar__branding__stats">
+      <tbody>
+        <%= tr_key_value 'Type', subject.human_name, td_class: "subject-color--#{@subject.css_class}" %>
+
+        <%= tr_key_value 'Creator' do %>
+          <%= link_to user_path(@subject.creator), class: 'flex flex--align' do %>
+            <%= avatar_for @subject.creator, class: 'avatar--small' %>
+            <%= @subject.creator.username %>
+
+            <%# TODO %>
+            <% if false %>
+              <div class="flex__grow"></div>
+
+              <%= role_styling @subject.creator, '[A]', title: "#{@subject.creator.username} is an admin" %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= tr_key_value 'Team' do %>
+          <%= link_to subject_path(@subject.team), class: 'flex flex--align' do %>
+            <%= avatar_for @subject.team, class: 'avatar--small '%>
+            <%= @subject.team.title %>
+          <% end %>
+        <% end if false # TODO %>
+
+        <%= tr_key_value 'Posted', time_ago_or_date_in_words(@subject.created_at) %>
+        <%= tr_key_value 'Updated', time_ago_or_date_in_words(@subject.updated_at) %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if block_given? %>
+    <div class="subject-sidebar__yield">
+      <%= yield %>
+    </div>
+  <% end %>
+</aside>

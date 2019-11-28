@@ -5,3 +5,10 @@
     flex-grow: 1;
   }
 }
+
+// hack to make the views by country fit in
+.geo-chart {
+  rect {
+    fill: var(--body-color);
+  }
+}

@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_014634) do
+ActiveRecord::Schema.define(version: 2019_11_25_102455) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_014634) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -43,42 +46,116 @@ ActiveRecord::Schema.define(version: 2019_10_20_014634) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "fields", force: :cascade do |t|
-    t.integer "topic_id"
-    t.string "name"
+  create_table "announcements", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "position"
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.integer "subject_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fakemons", force: :cascade do |t|
+    t.integer "game_id"
+    t.string "slug"
+    t.string "name"
+    t.string "type1"
+    t.string "type2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_fakemons_on_slug", unique: true
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "pokedex"
+  end
+
+  create_table "memos", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "poll_options", force: :cascade do |t|
+    t.integer "poll_id"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "poll_votes", force: :cascade do |t|
+    t.integer "poll_id"
+    t.integer "option_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.integer "subject_id"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "topic_id"
+    t.integer "subject_id"
     t.string "ancestry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ancestry"], name: "index_posts_on_ancestry"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "topic_id"
+  create_table "resources", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "topics", force: :cascade do |t|
-    t.string "type"
-    t.string "title"
+  create_table "subjects", force: :cascade do |t|
     t.integer "user_id"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"
     t.string "color", default: "#1c1c1e"
     t.boolean "pinned", default: false
+    t.integer "views_count", default: 0
     t.integer "team_id"
-    t.index ["slug"], name: "index_topics_on_slug", unique: true
+    t.string "subjected_type"
+    t.integer "subjected_id"
+    t.string "title"
+    t.string "slug"
+    t.index ["slug"], name: "index_subjects_on_slug", unique: true
+    t.index ["subjected_id", "subjected_type"], name: "index_subjects_on_subjected_id_and_subjected_type"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "subject_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tutorials", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,8 +167,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_014634) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
-    t.integer "posts_count"
-    t.integer "topics_count"
+    t.integer "posts_count", default: 0
+    t.integer "subjects_count", default: 0
     t.string "type", default: "Member"
     t.string "location"
     t.string "gender"
@@ -100,6 +177,15 @@ ActiveRecord::Schema.define(version: 2019_10_20_014634) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
+  end
+
+  create_table "views", force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ip_address"
+    t.string "country"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

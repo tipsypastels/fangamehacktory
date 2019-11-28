@@ -1,0 +1,13 @@
+<%= component :row, css_class: 'statbox', width: '320px', center: true do |r| %>
+  <%= r.column width: '50%' do %>
+    <%= image_tag statbox.image, class: 'statbox__image' %>
+  <% end %>
+
+  <%= r.column width: '50%', expand: true do %>
+    <%= component :table do |t| %>
+      <% statbox.stats.each do |stat| %>
+        <%= t.row_from stat %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

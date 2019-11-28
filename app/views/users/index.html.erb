@@ -1,0 +1,52 @@
+<%= component :headline, title: 'User List', actions: {
+  'Everyone' => {
+    path: '/users',
+    active: /\/users$/,
+  },
+
+  'Authors' => {
+    path: '/users?scope=authors',
+    active: /\/users\?scope=authors/,
+  },
+
+  'VIPs' => {
+    path: '/users?scope=vips',
+    active: /\/users\?scope=vips/,
+  },
+
+  'Admins' => {
+    path: '/users?scope=admins',
+    active: /\/users\?scope=admins/,
+  },
+} %>
+
+<% cache @users do %>
+  <div class="flex">
+    <div>
+      <%= page_entries_info @users, model: User %>
+    </div>
+
+    <div class="flex__grow"></div>
+    
+    <div>
+      <%= will_paginate @users %>
+    </div>
+  </div>
+
+  <table class="my table--fancy table--carets">
+    <tr>
+    </tr>
+    
+    <% @users.each do |user| %>
+      <%= rp 'users/list_user', user: user %>
+    <% end %>
+  </table>
+
+  <div class="flex">
+    <div class="flex__grow"></div>
+
+    <div>
+      <%= will_paginate @users %>
+    </div>
+  </div>
+<% end %>

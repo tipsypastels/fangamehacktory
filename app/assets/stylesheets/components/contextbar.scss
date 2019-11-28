@@ -1,0 +1,32 @@
+.contextbar {
+  width: $contextbar-width;
+  height: 100vh;
+  background-color: var(--highlight-color);
+
+  padding: 1rem;
+  box-sizing: border-box;
+
+  .contextbar__actions {
+    .contextbar__action {
+      display: block;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+
+      display: flex;
+      align-items: center;
+
+      &:hover, &.active {
+        background-color: var(--dark-highlight-color);
+      }
+
+      &.contextbar__action--discord .icon {
+        color: #6b89f0;
+      }
+
+      .contextbar__action__name {
+        flex-grow: 1;
+      }
+    }
+  }
+}

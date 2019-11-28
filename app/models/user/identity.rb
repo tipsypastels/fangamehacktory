@@ -11,4 +11,8 @@ module User::Identity
       length: { maximum: 50 },
       uniqueness: { case_sensitive: false }
   end
+
+  def name
+    username
+  end
 end

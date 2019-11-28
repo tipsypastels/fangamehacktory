@@ -1,0 +1,8 @@
+<%= rp 'layouts/contextbar_standard' %>
+
+<% if @subjects.present? %>
+  <%= component :box, size: :large do %>
+    <%= react_component 'SubjectCollection',
+      subjects: @subjects.as_api_response(:list_item) %>
+  <% end %>
+<% end %>

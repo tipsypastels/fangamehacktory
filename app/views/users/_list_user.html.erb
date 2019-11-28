@@ -1,0 +1,23 @@
+<% cache user do %>
+  <tr>
+    <td>
+      <%= link_to role_styling(user), user_path(user), class: 'hidden-link'%>
+    </td>
+
+    <td>
+      <%= user.created_at.strftime('%B %e, %Y') %>
+    </td>
+
+    <td>
+      <%= user.subjects_count %>
+    </td>
+
+    <td>
+      <%= user.posts_count %>
+    </td>
+
+    <td>
+      <%= user.age %>
+    </td>
+  </tr>
+<% end %>

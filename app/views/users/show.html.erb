@@ -1,12 +1,6 @@
 <div class="users-show">
   <div class="users-show__column users-show__avatar-area">
     <%= avatar_for @user, class: 'users-show__avatar' %>
-
-    <% if @user.biography.present? %>
-      <div class="users-show__avatar-biography">
-        <%= @user.biography %>
-      </div>
-    <% end %>
   </div>
 
   <div class="users-show__column users-show__main-area">
@@ -18,7 +12,7 @@
       <%= @user.username %>
     </h1>
 
-    <%= rp 'users/admins/badge' if @user.admin? %>
+    <%= role_badge @user %>
 
     <% if @user.biography.present? %>
       <div class="users-show__main-biography">
@@ -32,9 +26,21 @@
       <%= tr_key_value 'Location', @user.location %>
       <%= tr_key_value 'Occupation', @user.occupation %>
     </table>
+
+    <% if @user.biography.present? %>
+      <div class="users-show__avatar-biography">
+        <%= @user.biography %>
+      </div>
+    <% end %>
   </div>
 
   <div class="users-show__column users-show__listings-area">
 
   </div>
 </div>
+
+<%= react_component('SubjectCollection',
+  title: "Creations by #{@user.username}",
+  description: 'Games, tutorials, and more',
+  subjects: @user.subjects.on_profile.as_api_response(:list_item),
+) %>

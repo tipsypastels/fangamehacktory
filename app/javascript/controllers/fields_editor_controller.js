@@ -26,10 +26,10 @@ export default class FieldsEditorController extends Controller {
     const fields = [...persistedFields, ...deletedFields];
 
     ajax({
-      url: `/edit/${this.data.get('topic-id')}`,
+      url: `/edit/${this.data.get('subject-id')}`,
       method: 'PATCH',
       data: {
-        topic: { fields_attributes: fields },
+        subject: { fields_attributes: fields },
         authenticity_token: document.querySelector('[name="csrf-token"]').content
       },
     });

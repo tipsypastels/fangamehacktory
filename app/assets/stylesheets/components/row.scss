@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  max-width: 100vw;
+  
+  &.row--centered-horizontal {
+    margin: auto;
+  }
+  
+  &.row--centered--vertical {
+    align-items: center;
+  }
+
+  .row__column {
+    flex-shrink: 0;
+    height: 100%;
+
+    &:not(:last-child) {
+      margin-right: var(--gutters);
+    }
+
+    &.row__column--expand {
+      flex-grow: 1;
+    }
+  }
+}

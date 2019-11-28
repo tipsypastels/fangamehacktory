@@ -1,0 +1,11 @@
+<% cache subjects do %>
+  <% if subjects.empty? %>
+
+  <% else %>
+    <div class="subject-collection">
+      <% subjects.each do |subject| %>
+        <%= rp 'subjects/subject', subject: subject %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

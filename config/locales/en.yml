@@ -39,3 +39,16 @@ en:
       about_x_hours: '%{count}h'
       
       x_days: '%{count}d'
+      
+  will_paginate:
+    previous_label: '←'
+    next_label: '→'
+    
+    page_entries_info:
+      single_page_html:
+        zero: 'No %{model} found'
+        one: '<b>1</b> %{model}'
+        other: '<b>%{count}</b> %{model}s'
+
+      # multi_page_html: '<b>%{from}</b>&nbsp;—&nbsp;%<b>{to}</b> of <b>%{count}</b>'
+      multi_page_html: "%{model}s <b>%{from}</b>&nbsp;—&nbsp;<b>%{to}</b> of <b>%{count}</b>"

@@ -1,0 +1,15 @@
+# binary hacks
+red:
+  name: Red
+  type: binary
+blue:
+  name: Blue
+  type: binary
+yellow:
+  name: Yellow
+  type: binary
+
+# decomps
+pokeemerald:
+  name: Pokeemerald
+  type: decomp

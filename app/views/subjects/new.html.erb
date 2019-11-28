@@ -1,0 +1,39 @@
+<%= rp 'layouts/contextbar_standard' %>
+
+<h1>
+  Create a...
+</h1>
+
+<%= fancy_form model: @subject, url: new_subject_path do |f| %>
+  <div class="attr attr--radio">
+    <% Subjected.types.creatable.each_with_index do |type, i| %>
+      <%= f.radio_button(:subjected_type, type.name,
+        icon: type.icon,
+        label: type.human_name,
+        checked: i == 0,
+        class: "radio-button--#{type.css_class}"
+      ) %>
+    <% end %>
+  </div>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Title:
+    </div>
+
+    <%= f.text_field :title, autofocus: true %>
+  </label>
+
+  <label class="attr attr--text">
+    <div class="attr__title">
+      Description (optional):
+    </div>
+
+    <%= f.rich_text_area :description, class: 'no-toolbar' %>
+  </label>
+  
+
+  <div class="attr attr--controls">
+    <%= f.submit 'Start writing' %>
+  </div>
+<% end %>
