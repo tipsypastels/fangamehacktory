@@ -40,13 +40,14 @@ gem 'dotenv-rails'
 gem 'react-rails'
 gem 'acts_as_api'
 gem "components", git: "https://github.com/jensljungblad/components.git"
-gem "styleguide", git: "https://github.com/jensljungblad/styleguide.git"
 
 gem 'wdm' if Gem.win_platform?
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do

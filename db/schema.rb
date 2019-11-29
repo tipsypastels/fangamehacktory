@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_205418) do
+ActiveRecord::Schema.define(version: 2019_11_28_230800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 2019_11_28_205418) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "pokemon", force: :cascade do |t|
+    t.string "species"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "vanilla", default: false
+    t.index ["species"], name: "index_pokemon_on_species", unique: true
+  end
+
   create_table "pokemon_forms", force: :cascade do |t|
     t.string "name"
     t.string "type1"
@@ -96,15 +104,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_205418) do
     t.string "customized_type1"
     t.string "customized_type2"
     t.integer "national_position"
-  end
-
-  create_table "pokemons", force: :cascade do |t|
-    t.string "species"
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "vanilla", default: false
-    t.index ["slug"], name: "index_pokemons_on_slug", unique: true
   end
 
   create_table "poll_options", force: :cascade do |t|

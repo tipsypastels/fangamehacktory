@@ -15,6 +15,16 @@
 #   inflect.acronym 'RESTful'
 # end
 
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.uncountable %w(pokemon)
-# end
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.uncountable %w(pokemon)
+end
+
+
+
+ActiveRecord::ConnectionAdapters::DatabaseStatements.prepend Module.new {
+  def build_fixture_sql(fixtures, table_name)
+    p fixtures
+    p table_name
+    super
+  end
+}

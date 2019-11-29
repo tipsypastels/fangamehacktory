@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount Styleguide::Engine => "/styleguide" if Rails.env.development?
-
   devise_for :users,
     path: '',
     path_names: {
