@@ -1,0 +1,27 @@
+attributes:
+  - content
+  - foreign_key
+  - inheritance
+  - primary_keys
+  - timestamps
+title: Fangame Hacktory
+filename: erd
+filetype: png
+disconnected: true
+indirect: true
+inheritance: true
+markup: true
+notation: simple
+orientation: vertical
+polymorphism: true
+sort: true
+warn: true
+prepend_primary: true
+cluster: false
+splines: spline
+exclude: 
+  - ApplicationRecord
+  - Record
+  - ActionText::RichText
+  - ActiveStorage::Blob
+  - ActiveStorage::Attachment

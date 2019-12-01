@@ -1,0 +1,26 @@
+.subject {
+  display: block;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  &:hover {
+    background-color: var(--highlight-color); 
+  }
+
+  .subject__title {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .subject__happening {
+    .icon {
+      font-size: 0.8rem;
+    }
+  }
+}

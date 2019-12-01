@@ -1,9 +1,4 @@
 class ContextbarComponent < Components::Component
-  attribute :avatar
-  attribute :title
-  attribute :subtitle
-  attribute :description
-
   element :action, multiple: true do
     attribute :name
     attribute :url
@@ -46,7 +41,7 @@ class ContextbarComponent < Components::Component
   end
 
   def subject_action(subject_class)
-    return unless subject_class.creatable?
+    return unless subject_class.viewable_in_principle?
 
     name = subject_class.human_name.pluralize
     query_name = subject_class.term
@@ -61,14 +56,5 @@ class ContextbarComponent < Components::Component
   def subject_actions
     Subjected.types.creatable
       .each(&method(:subject_action))
-  end
-
-  def authorship
-    return unless avatar && title
-
-    @view.component :authorship,
-      avatar: avatar,
-      title: title,
-      subtitle: subtitle
   end
 end

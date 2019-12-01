@@ -13,11 +13,64 @@ section {
   margin-bottom: 1.3rem;
 }
 
-main.container {
-  padding: 1rem 2rem;
-  margin-left: $omnibar-width;
+.page {
+  width: 1100px;
+  max-width: 100%;
+  margin: auto;
 
-  .sidebar_group.sidebar_group--has-cbar + & {
-    margin-left: calc(#{$omnibar-width} + #{$contextbar-width});
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .page__main {
+    display: flex;
+
+    .page__main__content {
+      flex-grow: 1;
+    }
+  }
+}
+
+.header {
+  margin: 3rem 0.5rem;
+
+  .header__branding {
+    letter-spacing: 2px;
+  }
+
+  .header__nav {
+    a {
+      &:not(:first-child) {
+        padding-left: 0.25rem;
+      }
+
+      &:not(:last-child) {
+        padding-right: 0.25rem;
+      }
+
+      &.active, &:hover {
+        color: var(--secondary-text-color);
+      }
+    }
+  }
+}
+
+.paper {
+  flex-grow: 1;
+  background-color: var(--highlight-color);
+  margin: 0 2rem;
+  padding: 2rem 4rem;
+  position: relative;
+  box-shadow: -2px -2px 4px black;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -8px;
+    width: 8px;
+    height: calc(100% - 10px);
+    background-color: var(--dark-highlight-color);
+    z-index: 9999;
   }
 }

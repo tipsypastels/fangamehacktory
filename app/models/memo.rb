@@ -22,7 +22,7 @@ class Memo < ApplicationRecord
     Current.admin
   end
 
-  def viewable_in_principle?
+  def self.viewable_in_principle?
     Current.admin
   end
 

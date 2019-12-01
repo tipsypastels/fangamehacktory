@@ -1,14 +1,28 @@
 module UsersHelper
-  def avatar_for(user_or_avatar, opts = {})
+  def avatar_for(user_or_avatar, size, opts = {})
     avatar = 
       if user_or_avatar.respond_to? :avatar
         user_or_avatar.avatar
       else
         user_or_avatar
       end
-
+      
     return unless avatar.present?
-    image_tag avatar, opts
+
+    css_class = "avatar avatar--#{size} #{opts.delete(:class)}"
+    img_class = "avatar__image #{opts.delete(:image_class)}"  
+
+    content = [image_tag(avatar, class: img_class)]
+
+    if (status = opts.delete(:status))
+      content.push tag.div(
+        fa(status.icon, group: :fas),
+        class: "avatar__status bg-#{status.slug}",
+        title: status.name
+      )
+    end
+
+    tag.div(content.join.html_safe, class: css_class, **opts)
   end
 
   def role_styling(user, content = user.username, **opts)

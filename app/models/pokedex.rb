@@ -32,8 +32,8 @@ class Pokedex < ApplicationRecord
   validates :game, presence: true, unless: :template?
   validates :game, absence: true, if: :template?
 
-  delegate :empty?, to: :pokemon_presences
-  
+  delegate :present?, to: :pokemon_presences
+
   def clone_to(game)
     raise NotImplementedError
   end

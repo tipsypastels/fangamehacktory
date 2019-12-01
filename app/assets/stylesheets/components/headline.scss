@@ -1,29 +1,58 @@
 .headline {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
+
+  position: relative;
   
   .headline__header {
-    display: flex;
-    align-items: center;
-    
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--divider-color);
     margin-bottom: 1rem;
 
     .headline__title {
-      flex-grow: 1;
       font-size: 1.6rem;
     }
-  
+
+    .headline__toggle {
+      width: 35px;
+      height: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--divider-color);
+      border-radius: 50%;
+
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+
+  .headline__menu {
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 50px;
+    right: 0;
+
     .headline__actions {
-      a {
-        color: var(--secondary-text-color);
-  
-        &.active {
-          color: var(--primary-text-color);
-        }
-  
-        &:not(:last-child) {
-          margin-right: 0.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .headline__divider {
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+
+      .headline__action {
+        a {
+          display: block;
+          padding: 1rem 0.75rem;
+
+          .icon {
+            font-size: 1.15rem;
+          }
         }
       }
     }

@@ -1,5 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
-  include HasCreator, HasOneAttachedWithDefault
+  include HasCreator, HasOneAttachedSmart
 
   self.abstract_class = true
 end

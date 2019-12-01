@@ -28,10 +28,22 @@
   </head>
 
   <body class="<%= @body_class %>" style="<%= @body_style %>">
-    <%= component :sidebar_group %>
+    <div class="page">
+      <%= rp 'layouts/header' %>
 
-    <main class="container">
-      <%= yield %>
-    </main>
+      <main class="page__main">
+        <%= component :contextbar, **@cbar, &@cbar_block if @cbar %>
+
+        <div class="page__main__content">
+          <% if @paper %>
+            <div class="paper">
+              <%= yield %>
+            </div>
+          <% else %>
+            <%= yield %>
+          <% end %>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

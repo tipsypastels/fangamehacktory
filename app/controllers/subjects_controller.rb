@@ -8,6 +8,11 @@ class SubjectsController < ApplicationController
   def show
     @subject = Subject.friendly.find(params[:id])
     @subject.views.create!
+
+    respond_to do |format|
+      format.html
+      format.json { render_for_api :public, json: @subject }
+    end
   end
 
   def new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_230800) do
+ActiveRecord::Schema.define(version: 2019_12_01_005745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,14 @@ ActiveRecord::Schema.define(version: 2019_11_28_230800) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "checklists", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.integer "subject_id"
+    t.integer "actor_id"
+    t.string "action"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "timelined", default: false
   end
 
   create_table "games", force: :cascade do |t|
@@ -63,6 +67,17 @@ ActiveRecord::Schema.define(version: 2019_11_28_230800) do
   end
 
   create_table "memos", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "actor_id"
+    t.integer "user_id"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.string "action", null: false
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_230800) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "vanilla", default: false
+    t.integer "user_id"
     t.index ["species"], name: "index_pokemon_on_species", unique: true
   end
 
@@ -149,13 +165,14 @@ ActiveRecord::Schema.define(version: 2019_11_28_230800) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "color", default: "#1c1c1e"
-    t.boolean "pinned", default: false
     t.integer "views_count", default: 0
     t.integer "team_id"
     t.string "subjected_type"
     t.integer "subjected_id"
     t.string "title"
     t.string "slug"
+    t.integer "events_count", default: 0
+    t.integer "timelined_events_count", default: 0
     t.index ["slug"], name: "index_subjects_on_slug", unique: true
     t.index ["subjected_id", "subjected_type"], name: "index_subjects_on_subjected_id_and_subjected_type"
   end
@@ -196,11 +213,12 @@ ActiveRecord::Schema.define(version: 2019_11_28_230800) do
     t.string "username"
     t.integer "posts_count", default: 0
     t.integer "subjects_count", default: 0
-    t.string "type", default: "Member"
+    t.string "type", default: "User"
     t.string "location"
     t.string "gender"
     t.integer "age"
     t.string "occupation"
+    t.integer "pokemon_count"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"

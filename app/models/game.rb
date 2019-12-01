@@ -10,13 +10,9 @@
 class Game < ApplicationRecord
   include Subjected
 
-  has_many :fakemon
-  accepts_nested_attributes_for :fakemon, allow_destroy: true
-
-  def pokedex
-    @pokedex ||= Pokedex.new(self['pokedex'], self)
-  end
-
+  has_one :pokedex
+  accepts_nested_attributes_for :pokedex
+  
   def self.icon
     :gamepad
   end
@@ -35,5 +31,9 @@ class Game < ApplicationRecord
     @supported_widgets ||= {
       pokedex: PokedexWidgetComponent,
     }.with_indifferent_access
+  end
+
+  def supported_widget_names
+    supported_widgets.keys
   end
 end

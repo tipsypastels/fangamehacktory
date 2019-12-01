@@ -1,3 +1,4 @@
 <div class="sticker <%= sticker.css_class %>">
+  <%= fa sticker.icon, group: :fas if sticker.icon %>
   <%= sticker.title %>
 </div>

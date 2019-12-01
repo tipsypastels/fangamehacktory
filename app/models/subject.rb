@@ -2,19 +2,20 @@
 #
 # Table name: subjects
 #
-#  id             :bigint           not null, primary key
-#  color          :string           default("#1c1c1e")
-#  pinned         :boolean          default(FALSE)
-#  slug           :string
-#  status         :integer          default("draft")
-#  subjected_type :string
-#  title          :string
-#  views_count    :integer          default(0)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  subjected_id   :integer
-#  team_id        :integer
-#  user_id        :integer
+#  id                     :bigint           not null, primary key
+#  color                  :string           default("#1c1c1e")
+#  events_count           :integer          default(0)
+#  slug                   :string
+#  status                 :integer          default("draft")
+#  subjected_type         :string
+#  timelined_events_count :integer          default(0)
+#  title                  :string
+#  views_count            :integer          default(0)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  subjected_id           :integer
+#  team_id                :integer
+#  user_id                :integer
 #
 # Indexes
 #
@@ -24,8 +25,8 @@
 
 class Subject < ApplicationRecord
   include Identity, Status, Scoped, Widgeted
-  include Subscribable, Viewable, Pollable
-  include Graphics, Terms, Checklisted, Teamwork, Fields
+  include Subscribable, Viewable, Pollable, Notifiable
+  include Graphics, Terms, Teamwork, Fields, EventTracking
 
   validates :color,
     presence: true,
@@ -46,26 +47,29 @@ class Subject < ApplicationRecord
 
   acts_as_api
 
-  api_accessible :list_item do |api|
+  api_accessible :public do |api|
     api.add :id
     api.add :title
-    api.add :description
-    api.add :avatar_url, as: :avatarURL
-    api.add :thumbnail_url, as: :thumbnailURL
-    api.add :color
-    api.add :creator_username, as: :creatorUsername
-    api.add :creator_path, as: :creatorPath
+    api.add :credit
+    api.add :subjected
+    api.add ->s { s.description.to_s }, as: :description
+    api.add ->s { s.content.to_s }, as: :content
+    api.add :fields
+    api.add :avatar_url
+    api.add :thumbnail_url
+    api.add :creator
     api.add :path
-    api.add :css_class, as: :cssClass
     api.add :status
+    api.add :status_icon
+    api.add :views_count
+    api.add :unread?, as: :unread
+    api.add :events_count
+    api.add :timelined_events_count
+    api.add :latest_event
   end
 
   def path
     subject_path self
-  end
-
-  def creator_path
-    user_path creator
   end
 
   def editable?

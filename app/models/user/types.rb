@@ -1,5 +1,5 @@
 module User::Types
-  LIST = %w|Member Admin Vip|
+  LIST = %w|User Admin Vip|
 
   extend ActiveSupport::Concern
 

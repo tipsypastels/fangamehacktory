@@ -40,6 +40,7 @@ gem 'dotenv-rails'
 gem 'react-rails'
 gem 'acts_as_api'
 gem "components", git: "https://github.com/jensljungblad/components.git"
+gem 'counter_culture'
 
 gem 'wdm' if Gem.win_platform?
 
@@ -48,14 +49,15 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'bullet'
-  gem 'faker'
   gem 'annotate'
+  gem 'rails-erd'
 end
 
 group :test do

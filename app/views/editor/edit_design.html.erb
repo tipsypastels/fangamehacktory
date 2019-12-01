@@ -1,15 +1,13 @@
-<%= rl 'editor/container' do %>
-  <%= fancy_form model: @subject, scope: :subject, url: editor_path(@subject) do |f| %>
-    <%= f.file_field :avatar, current: @subject.avatar, crop: {
-      aspect: { width: 1, height: 1 }
-    }, button_class: "subject-bg-color--#{@subject.css_class}" %>
-    
-    <%= f.file_field :thumbnail, current: @subject.thumbnail, crop: {
-      aspect: { width: 263.0, height: 200 }
-    }, button_class: "subject-bg-color--#{@subject.css_class}" %>
+<%= fancy_form model: @subject, scope: :subject, url: editor_path(@subject) do |f| %>
+  <%= f.file_field :avatar, current: @subject.avatar, crop: {
+    aspect: { width: 1, height: 1 }
+  }, button_class: "subject-bg-color--#{@subject.css_class}" %>
+  
+  <%= f.file_field :thumbnail, current: @subject.thumbnail, crop: {
+    aspect: { width: 534.0, height: 250 }
+  }, button_class: "subject-bg-color--#{@subject.css_class}" %>
 
-    <div class="attr attr--controls">
-      <%= f.submit 'Save Changes', class: "subject-bg-color--#{@subject.css_class}" %>
-    </div>
-  <% end %>
+  <div class="attr attr--controls">
+    <%= f.submit 'Save Changes', class: "subject-bg-color--#{@subject.css_class}" %>
+  </div>
 <% end %>

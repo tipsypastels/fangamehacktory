@@ -1,17 +1,1 @@
-<%= rp 'subjects/header', subject: @subject %>
-
-<div class="editor-edit flex">
-  <%= rl 'subjects/sidebar', subject: @subject do %>
-    <% EditorController::EDITOR_PAGES.each do |page| %>
-      <%= active_link_to page.to_s.titlecase, "/edit/#{@subject.slug}/#{page}", class: "button-link subject-bg-color--#{@subject.css_class}--active" %>
-    <% end %>
-  <% end %>
-
-  <div class="editor-edit__main">
-    <h1>
-      Edit <%= @subject.title %>
-    </h1>
-    
-    <%= yield %>
-  </div>
-</div>
+<%= yield %>

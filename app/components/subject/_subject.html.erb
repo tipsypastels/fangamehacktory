@@ -1,0 +1,29 @@
+<%= link_to subject, class: 'subject' do %>
+  <%= component :row, class: 'subject__row', gutters: '10px', center: :vertical do |r| %>
+    <%= r.column do %>
+      <%= avatar_for subject, :smallish, status: subject.status_icon %>
+    <% end %>
+
+    <%= r.column expand: true do %>
+      <div class="subject__title <%= 'subject__title--unread' if subject.unread? %>">
+        <%= subject.title %>
+      </div>
+
+      <div class="subject__happening">
+        <%= fa subject.latest_event.icon, group: :fas,
+                                          class: "color-#{subject.css_class}" %>
+        <%= subject.latest_event.label %>
+
+        <span class="secondary-text">
+          <%= time_ago_or_date_in_words subject.latest_event.created_at %>
+        </span>
+      </div>
+    <% end %>
+
+    <%= r.column do %>
+      <%= component :sticker, title: subject.human_name,
+                              icon: subject.icon,
+                              css_class: "bg-#{subject.css_class}" %>
+    <% end %>
+  <% end %>
+<% end %>

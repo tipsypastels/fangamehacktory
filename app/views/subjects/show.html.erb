@@ -1,12 +1,11 @@
-<% @body_style = "--primary-color: #{@subject.color}" %>
+<%= component :headline, title: @subject.title do |h| %>
+  <% h.action_group "#{@subject.term} Management" %>
+    <%= h.action "Edit #{@subject.term}", editor_path(@subject), :pencil %>
+    <%= h.action "Change Appearance", design_editor_path(@subject), :palette %>
+  <% end if @subject.editable? %>
+<% end %>
 
-<% context_bar( 
-  avatar: @subject.avatar_url,
-  title: @subject.title,
-  description: @subject.description
-) %>
-
-<%= component :headline, title: @subject.title %>
+<%= image_tag @subject.thumbnail %>
 
 <section class="secondary-text italic">
   Created by <%= @subject.credit %>

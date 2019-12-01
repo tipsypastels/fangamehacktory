@@ -1,14 +1,36 @@
 <div class="headline">
-  <header class="headline__header">
-    <h1 class="headline__title font-display">
+  <%= component :row, center: :vertical, css_class: 'headline__header' do |r| %>
+    <%= r.column expand: true, css_class: 'headline__title' do %>
       <%= headline.title %>
-    </h1>
+    <% end %>
 
-    <div class="headline__actions">
-      <% headline.actions.each do |action| %>
-        <%= active_link_to action.name, action.to, 
-          active: action.active %>
+    <% if headline.actions.present? %>
+      <%= r.column css_class: 'headline__toggle' do %>
+        <%= fa :'ellipsis-h' %>
       <% end %>
+    <% end %>
+  <% end %>
+
+  <% if headline.actions.present? %>
+    <div class="headline__menu">
+      <ul class="headline__actions">
+        <% headline.actions.each do |action| %>
+          <% if action.to %>
+            <li class="headline__action">
+              <%= link_to action.to do %>
+                <%= fa action.icon %>
+                <span class="headline__action__name">
+                  <%= action.name %>
+                </span>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="headline__divider">
+              <%= action.name %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
-  </header>
+  <% end %>
 </div>

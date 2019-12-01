@@ -24,7 +24,7 @@ module Subject::Fields
 
   private
 
-  FIELD_REGEX = /(<h1>.+?)<\/h1>/
+  FIELD_REGEX = /(<h1>.+?<\/h1>)/
 
   def create_default_fields
     content = 

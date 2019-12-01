@@ -1,14 +1,14 @@
 $base-colors: (
-  body: black,
-  highlight: #1c1c1e,
-  dark-highlight: darken(#1c1c1e, 3%),
-  slight-highlight: mix(#1c1c1e, transparent, 50%),
+  body: #14191f,
+  highlight: #1b2028,
+  dark-highlight: black,
+  slight-highlight: mix(#0E0E0E, transparent, 50%),
   divider: #323235,
-  primary-text: white,
-  secondary-text: #98989e,
-  primary: #db4e30,
-  dark-primary: darken(#db4e30, 10%),
-  draft: #d91141,
+  primary-text: #aaaaaa,
+  secondary-text: #7c7c7c,
+  primary: #4d698e,
+  dark-primary: darken(#4d698e, 10%),
+  pinned: #d91141,
   game: #EC6363,
   resource: #ff912b,
   tutorial: #FFAD33,
@@ -49,6 +49,3 @@ body {
   font-family: Comfortaa;
   text-transform: uppercase;
 }
-
-$omnibar-width: 64px;
-$contextbar-width: 200px;

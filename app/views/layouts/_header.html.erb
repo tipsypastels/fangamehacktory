@@ -1,0 +1,20 @@
+<%= component :row, center: :vertical, css_class: 'header font-display' do |r| %>
+  <%= r.column expand: true, css_class: 'header__branding' do %>
+    <%= link_to root_path, class: 'color-primary' do %>
+      Fangame Hacktory
+    <% end %>
+  <% end %>
+
+  <%= r.column css_class: 'header__nav' do %>
+    <%= active_link_to 'Home', root_path, active: :exact %>
+    <%= active_link_to 'Explore', '#', active: :exact %>
+    <%= active_link_to 'FAQ', '/faq', active: :exact %>
+
+    <% if Current.user %>
+      <%= active_link_to 'Dashboard', '#', active: :exact %>
+      <%= active_link_to Current.user.username, user_path(Current.user), active: :exact %>
+    <% else %>
+      <%= active_link_to 'Login', new_user_session_path, active: :exact %>
+    <% end %>
+  <% end %>
+<% end %>

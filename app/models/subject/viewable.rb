@@ -1,5 +1,5 @@
 module Subject::Viewable
-  REPEAT_VIEW_DELAY = 30.minutes
+  REPEAT_VIEW_DELAY = 1.minute
 
   extend ActiveSupport::Concern
 
@@ -7,6 +7,14 @@ module Subject::Viewable
     has_many :views do
       def create!
         super unless viewed_recently?
+      end
+
+      def for_current
+        if Current.user
+          where(user: Current.user)
+        else
+          where(ip_address: Current.ip_address, user: nil)
+        end
       end
 
       def viewed_recently?
@@ -22,5 +30,15 @@ module Subject::Viewable
         group(:country).count
       end
     end
+  end
+
+  def unread?
+    last_view = views.for_current
+                     .order(created_at: :desc)
+                     .limit(1)
+                     .take
+
+    return true unless last_view
+    last_view.created_at < updated_at
   end
 end

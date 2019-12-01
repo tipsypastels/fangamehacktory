@@ -1,0 +1,33 @@
+$avatar-sizes: (
+  small: 32,
+  smallish: 42,
+);
+
+.avatar {
+  position: relative;
+
+  @each $key, $size in $avatar-sizes {
+    &.avatar--#{$key} .avatar__image {
+      width: #{$size}px;
+      height: #{$size}px;
+    }
+  }
+
+  .avatar__image {
+    border-radius: 50%;
+  }
+
+  .avatar__status {
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: white;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

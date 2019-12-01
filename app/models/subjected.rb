@@ -21,6 +21,10 @@ module Subjected
     def term
       self.name.downcase
     end
+
+    def viewable_in_principle?
+      true
+    end
   end
 
   included do
@@ -29,9 +33,20 @@ module Subjected
 
     delegate :editable?, :draft?, :published?, :archived?, 
       to: :subject
+
+    acts_as_api
+
+    api_accessible :public do |api|
+      api.add ->s { s.class.name }, as: :type
+      api.add :css_class
+      api.add :human_name
+      api.add :term
+      api.add :icon
+      api.add :supported_widget_names
+    end
   end
 
-  delegate :css_class, :human_name, :term, 
+  delegate :css_class, :human_name, :term, :viewable_in_principle?,
     to: :class
 
   def icon
@@ -40,9 +55,5 @@ module Subjected
 
   def viewable?
     (editable? || !draft?) && viewable_in_principle?
-  end
-
-  def viewable_in_principle?
-    true
   end
 end

@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   patch '/edit/:id', to: 'editor#update'
   
   EditorController::EDITOR_PAGES.each do |page|
-    get "/edit/:id/#{page}", to: "editor#edit_#{page}", as: :"edit_#{page}"
+    get "/edit/:id/#{page}", to: "editor#edit_#{page}", 
+      as: :"#{page}_editor"
   end
 
   get '/users', to: 'users#index', as: :users
