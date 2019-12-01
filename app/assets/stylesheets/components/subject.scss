@@ -6,6 +6,8 @@
   
   &:not(:last-child) {
     margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--divider-color);
   }
 
   &:hover {
@@ -16,6 +18,13 @@
     color: var(--primary-color);
     font-size: 1.1rem;
     font-weight: 500;
+
+    .subject__title__unread-mark {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
   }
 
   .subject__happening {

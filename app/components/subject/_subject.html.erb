@@ -5,8 +5,12 @@
     <% end %>
 
     <%= r.column expand: true do %>
-      <div class="subject__title <%= 'subject__title--unread' if subject.unread? %>">
+      <div class="subject__title">
         <%= subject.title %>
+
+        <% if subject.unread? %>
+          <div class="subject__title__unread-mark bg-<%= subject.css_class %>" title="Unread Updates"></div>
+        <% end %>
       </div>
 
       <div class="subject__happening">

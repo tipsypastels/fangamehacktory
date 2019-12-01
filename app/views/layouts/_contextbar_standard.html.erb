@@ -1,8 +1,4 @@
-<% context_bar(
-  avatar: asset_path('logo.png'),
-  title: 'Fangame Hacktory',
-  description: "A community for game development, Pokémon hacks, modding, and dumb memes. Stop by and share what you're working on!"
-) do |bar| %>
+<% context_bar do |bar| %>
   <%= bar.action 'Home', root_path, icon: fa(:home) %>
   <%= bar.subject_actions %>
   <%= bar.action 'Discord', Discord::URL, icon: fa(:discord, group: :fab) %>

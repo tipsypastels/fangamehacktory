@@ -23,11 +23,17 @@ section {
   min-height: 100vh;
 
   .page__main {
+    flex-grow: 1;
     display: flex;
 
     .page__main__content {
       flex-grow: 1;
     }
+  }
+
+  .page__footer {
+    box-sizing: border-box;
+    margin: 1rem 0;
   }
 }
 
