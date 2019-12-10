@@ -1,4 +1,21 @@
 FactoryBot.define do
+  factory :rating do
+    type { "" }
+    subject_id { "MyString" }
+    user_id { 1 }
+  end
+
+  factory :tagging do
+    tag_id { 1 }
+    subject_id { 1 }
+  end
+
+  factory :tag do
+    name { "MyString" }
+    slug { "MyString" }
+    color { "MyString" }
+  end
+
   factory :subject do
     subjected_type { 'Game' }
     title { Faker::Game.title }

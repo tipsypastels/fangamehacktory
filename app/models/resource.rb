@@ -14,6 +14,10 @@ class Resource < ApplicationRecord
     :'file-download'
   end
 
+  def self.suggested_tags
+    %w|tileset music sprites script|
+  end
+
   def default_fields
     {
       introduction: 'TODO',

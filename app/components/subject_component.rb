@@ -10,6 +10,7 @@ class SubjectComponent < Components::Component
            :css_class,
            :human_name,
            :icon,
+           :tags,
            to: :relation
   
   private

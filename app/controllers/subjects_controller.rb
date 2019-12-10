@@ -32,6 +32,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:title, :subjected_type, :description)
+    params.require(:subject).permit(:title, :subjected_type, :tag_list, :description)
   end
 end

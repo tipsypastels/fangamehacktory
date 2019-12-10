@@ -1,0 +1,17 @@
+.slide-down {
+  overflow-y: hidden;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box;
+
+  &.slide-down--fast {
+    transition-duration: 0.1s;
+  }
+
+  &:not(.active) {
+    height: 0;
+  }
+
+  &.active {
+    height: var(--height);
+  }
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_005745) do
+ActiveRecord::Schema.define(version: 2019_12_03_223900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,15 @@ ActiveRecord::Schema.define(version: 2019_12_01_005745) do
     t.index ["ancestry"], name: "index_posts_on_ancestry"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.string "type"
+    t.string "subject_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "subject_id"], name: "index_ratings_on_user_id_and_subject_id"
+  end
+
   create_table "resources", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -173,6 +182,8 @@ ActiveRecord::Schema.define(version: 2019_12_01_005745) do
     t.string "slug"
     t.integer "events_count", default: 0
     t.integer "timelined_events_count", default: 0
+    t.integer "ratings_count", default: 0, null: false
+    t.integer "overall_rating", default: 0, null: false
     t.index ["slug"], name: "index_subjects_on_slug", unique: true
     t.index ["subjected_id", "subjected_type"], name: "index_subjects_on_subjected_id_and_subjected_type"
   end
@@ -182,6 +193,21 @@ ActiveRecord::Schema.define(version: 2019_12_01_005745) do
     t.integer "subject_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "subject_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "team_users", force: :cascade do |t|

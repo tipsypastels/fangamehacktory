@@ -6,6 +6,10 @@ module Subjected
   end
 
   class_methods do
+    def suggested_tags
+      []
+    end
+
     def creatable?
       Current.user
     end
@@ -55,5 +59,13 @@ module Subjected
 
   def viewable?
     (editable? || !draft?) && viewable_in_principle?
+  end
+
+  def supported_widgets
+    {}
+  end
+
+  def supported_widget_names
+    supported_widgets.keys
   end
 end

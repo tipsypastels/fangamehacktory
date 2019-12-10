@@ -7,9 +7,8 @@ Rails.application.routes.draw do
       sign_up: 'register',
     }
 
-  scope '/subject_admin/:id', as: :subject_admin do 
-    patch '/pin', to: 'subject_admin#pin', as: :pin
-    patch '/unpin', to: 'subject_admin#unpin', as: :unpin
+  namespace :api do
+    get '/tag_suggestions/:type', to: 'tag_suggestions#show', as: :tag_suggestions
   end
   
   get '/edit/:id', to: 'editor#edit', as: :editor

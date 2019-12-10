@@ -24,10 +24,8 @@
       </div>
     <% end %>
 
-    <%= r.column do %>
-      <%= component :sticker, title: subject.human_name,
-                              icon: subject.icon,
-                              css_class: "bg-#{subject.css_class}" %>
+    <%= r.column css_class: 'secondary-text' do %>
+      <%= type_and_most_relevant_tags subject %>
     <% end %>
   <% end %>
 <% end %>

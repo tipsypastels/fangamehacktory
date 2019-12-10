@@ -1,26 +1,31 @@
-<h2>Log in</h2>
+<% @skip_wrappers = true %>
+<% @body_class = :auth %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="box bg-body">
+  <h2>Log in</h2>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <%= fancy_form model: resource, as: resource_name, url: session_path(resource_name) do |f| %>
+    <label class="attr attr--text">
+      <div class="attr__title">
+        Email
+      </div>
+    
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </label>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <label class="attr attr--text">
+      <div class="attr__title">
+        Password
+      </div>
+    
+      <%= f.email_field :password, autocomplete: "current-password" %>
+    </label>
+
+    <div class="attr attr--controls">
+      <%= f.submit 'Log in', 'data-disable-with': 'Logging in...' %>
     </div>
+
+     <%= render "devise/shared/links" %>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

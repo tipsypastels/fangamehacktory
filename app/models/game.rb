@@ -17,6 +17,10 @@ class Game < ApplicationRecord
     :gamepad
   end
 
+  def self.suggested_tags
+    %w|firered emerald pokeemerald custom-tiles custom-region|
+  end
+
   def default_fields
     @default_fields ||= {
       introduction: "Use this space to introduce others to your game!",
@@ -31,9 +35,5 @@ class Game < ApplicationRecord
     @supported_widgets ||= {
       pokedex: PokedexWidgetComponent,
     }.with_indifferent_access
-  end
-
-  def supported_widget_names
-    supported_widgets.keys
   end
 end

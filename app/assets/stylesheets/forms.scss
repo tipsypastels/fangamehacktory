@@ -25,7 +25,10 @@ form {
         border: none;
         outline: none !important;
         font-size: 1rem;
-        padding-top: 6px;
+
+        &:not(.no-padding-top) {
+          padding-top: 6px;
+        }
   
         &::placeholder {
           color: var(--secondary-text-color);
@@ -84,18 +87,9 @@ form {
         input:checked + .radio-button__display {
           .radio-button__icon {
             background-color: var(--primary-color);
+            color: var(--text-on-bright-color);
           }
         }
-
-        // @each $type, $color in $subject-colors {
-        //   &.radio-button--#{$type} {
-        //     input:checked + .radio-button__display {
-        //       .radio-button__icon {
-        //         background-color: var(--color);
-        //       }
-        //     }
-        //   }
-        // }
       }
     }
 
@@ -110,6 +104,10 @@ form {
         font-size: 1rem;
         padding: 0.5rem 1rem;
         cursor: pointer;
+
+        &:not(:disabled) {
+          color: var(--text-on-bright-color);
+        }
       }
     }
 
@@ -169,4 +167,12 @@ form {
       margin-bottom: 0.5rem;
     }
   }
+}
+
+.required {
+  color: var(--primary-color);
+}
+
+.clickable {
+  cursor: pointer;
 }

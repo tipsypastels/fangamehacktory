@@ -5,6 +5,8 @@
 #  id                     :bigint           not null, primary key
 #  color                  :string           default("#1c1c1e")
 #  events_count           :integer          default(0)
+#  overall_rating         :integer          default(0), not null
+#  ratings_count          :integer          default(0), not null
 #  slug                   :string
 #  status                 :integer          default("draft")
 #  subjected_type         :string
@@ -24,8 +26,8 @@
 #
 
 class Subject < ApplicationRecord
-  include Identity, Status, Scoped, Widgeted
-  include Subscribable, Viewable, Pollable, Notifiable
+  include Identity, Status, Scoped, Widgeted, Rated
+  include Subscribable, Viewable, Pollable, Notifiable, Taggable
   include Graphics, Terms, Teamwork, Fields, EventTracking
 
   validates :color,
@@ -66,6 +68,9 @@ class Subject < ApplicationRecord
     api.add :events_count
     api.add :timelined_events_count
     api.add :latest_event
+    api.add :tags
+    api.add :ratings_count
+    api.add :overall_rating
   end
 
   def path

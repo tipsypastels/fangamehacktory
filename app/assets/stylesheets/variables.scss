@@ -1,11 +1,13 @@
 $base-colors: (
   body: #14191f,
   highlight: #1b2028,
-  dark-highlight: black,
+  dark-highlight: #0c0e12,
   slight-highlight: mix(#0E0E0E, transparent, 50%),
   divider: #1b2028,
+  divider-on-highlight: #aaaaaa,
   primary-text: #aaaaaa,
   secondary-text: #7c7c7c,
+  text-on-bright: white,
   primary: #4d698e,
   dark-primary: darken(#4d698e, 10%),
   pinned: #d91141,
@@ -36,6 +38,11 @@ $base-colors: (
         background-color: var(--#{$key}-color) !important;
       }
     }
+  }
+
+  .inner__bg-#{$key} > *,
+  [data-replaceable-class="inner__bg-#{$key}"] > * {
+    background-color: var(--#{$key}-color);
   }
 }
 

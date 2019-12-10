@@ -1,37 +1,61 @@
-<h1>
-  Create a...
-</h1>
+<%= component :headline, title: 'Create a...' %>
 
-<%= fancy_form model: @subject, url: new_subject_path do |f| %>
-  <div class="attr attr--radio">
-    <% Subjected.types.creatable.each_with_index do |type, i| %>
-      <%= f.radio_button(:subjected_type, type.name,
-        icon: type.icon,
-        label: type.human_name,
-        checked: i == 0,
-        class: "radio-button--#{type.css_class}"
-      ) %>
-    <% end %>
-  </div>
-
-  <label class="attr attr--text">
-    <div class="attr__title">
-      Title:
+<div data-controller="tags">
+  <%= fancy_form model: @subject, url: new_subject_path do |f| %>
+    <div class="attr attr--radio attr--no-border-top">
+      <% Subjected.types.creatable.each_with_index do |type, i| %>
+        <%= f.radio_button(:subjected_type, type.name,
+          icon: type.icon,
+          label: type.human_name,
+          checked: i == 0,
+          class: "radio-button--#{type.css_class}",
+          'data-action': 'tags#changeType',
+          'data-tags-type': type.name,
+          'data-css-class': type.css_class,
+        ) %>
+      <% end %>
     </div>
 
-    <%= f.text_field :title, autofocus: true %>
-  </label>
+    <label class="attr attr--text">
+      <div class="attr__title">
+        Title<span class="required">*</span>:
+      </div>
 
-  <label class="attr attr--text">
-    <div class="attr__title">
-      Description (optional):
+      <%= f.text_field :title, autofocus: true %>
+    </label>
+
+    <label class="attr attr--text">
+      <div class="attr__title">
+        Tags:
+      </div>
+
+      <%= f.tags_field :tag_list  %>
+    </label>
+
+    <div class="slide-down" data-target="tags.picker" style="--height: 40px">
+      <div class="attr attr--text slide-down__inner">
+        <div class="attr__title">
+          Suggested Tags:
+        </div>
+
+        <div data-target="tags.suggestionsBlock"></div>
+      </div>
     </div>
 
-    <%= f.rich_text_area :description, class: 'no-toolbar' %>
-  </label>
-  
+    <label class="attr attr--text">
+      <div class="attr__title">
+        Description:
+      </div>
 
-  <div class="attr attr--controls">
-    <%= f.submit 'Start writing' %>
-  </div>
-<% end %>
+      <%= f.rich_text_area :description, class: 'no-toolbar' %>
+    </label>
+
+    <div class="attr attr--controls">
+      <%= f.submit 'Start writing', 'data-disable-with': 'Saving...' %>
+    </div>
+  <% end %>
+
+  <section class="secondary-text">
+    Fields marked with a <span class="required">*</span> are required.
+  </section>
+</div>

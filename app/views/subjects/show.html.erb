@@ -1,14 +1,10 @@
+<% has_paper! %>
+
 <%= component :headline, title: @subject.title do |h| %>
-  <% h.action_group "#{@subject.term} Management" %>
+  <% if @subject.editable? %>
     <%= h.action "Edit #{@subject.term}", editor_path(@subject), :pencil %>
     <%= h.action "Change Appearance", design_editor_path(@subject), :palette %>
-  <% end if @subject.editable? %>
+  <% end %>
 <% end %>
-
-<%= image_tag @subject.thumbnail %>
-
-<section class="secondary-text italic">
-  Created by <%= @subject.credit %>
-</section>
 
 <%= render_content_and_widgets @subject %>

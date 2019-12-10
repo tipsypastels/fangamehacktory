@@ -54,7 +54,6 @@ class ContextbarComponent < Components::Component
   end
 
   def subject_actions
-    Subjected.types.creatable
-      .each(&method(:subject_action))
+    Subjected.types.each(&method(:subject_action))
   end
 end

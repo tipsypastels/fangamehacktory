@@ -6,7 +6,7 @@
   
   .headline__header {
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--divider-color);
+    border-bottom: 1px solid var(--divider-on-highlight-color);
     margin-bottom: 1rem;
 
     .headline__title {
@@ -21,7 +21,7 @@
       align-items: center;
       justify-content: center;
 
-      border: 1px solid var(--divider-color);
+      border: 1px solid var(--primary-text-color);
       border-radius: 50%;
 
       font-size: 1.5rem;
@@ -48,7 +48,11 @@
       .headline__action {
         a {
           display: block;
-          padding: 1rem 0.75rem;
+          padding: 0.75rem;
+
+          &:hover {
+            background-color: var(--dark-primary-color);
+          }
 
           .icon {
             font-size: 1.15rem;

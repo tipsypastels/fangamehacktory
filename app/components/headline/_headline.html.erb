@@ -1,3 +1,13 @@
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const $ = document.querySelector.bind(document);
+
+     $('.headline__toggle').addEventListener('click', () => {
+       $('.headline__menu').classList.toggle('active');
+     });
+  });
+</script>
+
 <div class="headline">
   <%= component :row, center: :vertical, css_class: 'headline__header' do |r| %>
     <%= r.column expand: true, css_class: 'headline__title' do %>
@@ -12,7 +22,7 @@
   <% end %>
 
   <% if headline.actions.present? %>
-    <div class="headline__menu">
+    <div class="headline__menu slide-down slide-down--fast" style="--height: <%= headline.actions_height %>px">
       <ul class="headline__actions">
         <% headline.actions.each do |action| %>
           <% if action.to %>

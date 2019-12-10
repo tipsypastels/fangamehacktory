@@ -6,4 +6,15 @@ module SubjectsHelper
       end
     end
   end
+
+  def type_and_most_relevant_tags(subject)
+    # TODO order by relevance
+
+    [
+      tag.span(subject.human_name, class: "color-#{subject.css_class}"),
+      *subject.tags.pluck(:name).first(2)
+    ].compact
+     .join(' / ')
+     .html_safe
+  end
 end

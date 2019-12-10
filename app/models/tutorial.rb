@@ -14,6 +14,10 @@ class Tutorial < ApplicationRecord
     :'graduation-cap'
   end
 
+  def self.suggested_tags
+    %w|disassembly binary mapping scripting spriting|
+  end 
+
   def default_fields
     {
       introduction: 'TODO'

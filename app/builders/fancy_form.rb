@@ -62,4 +62,29 @@ class FancyForm < ActionView::Helpers::FormBuilder
       HTML
     end
   end
+
+  def tags_field(name)
+    # <<~HTML.html_safe
+    #   <div class="tags-field">
+    #     <div class="tag-stickers" data-target="tags.currentsBlock"></div>
+    #     #{text_field(name, 'data-action': 'keyup->tags#inputText')}
+    #   </div>
+    # HTML
+
+    meta = <<~HTML.html_safe
+      <input type="hidden" name="subject[#{name}]" value="" data-target="tags.meta" />
+    HTML
+
+    editor = @template.component :row, center: :vertical do |r|
+      r.column {
+        @template.tag.div('data-target': 'tags.currentsBlock')
+      }
+
+      r.column {
+        text_field(:"_#{name}", class: 'no-padding-top', 'data-action': 'focus->tags#openPicker blur->tags#closePicker keydown->tags#handleKeybind')
+      }
+    end
+
+    [editor, meta].join.html_safe
+  end
 end
