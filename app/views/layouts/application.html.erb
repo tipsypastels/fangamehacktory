@@ -27,27 +27,7 @@
     </script>
   </head>
 
-  <body class="<%= @body_class %>" style="<%= @body_style %>">
-    <% if @skip_wrappers %>
-      <%= yield %>
-    <% else %>
-      <div class="page">
-        <%= rp 'layouts/header' %>
-
-        <main class="page__main">
-          <%= component :contextbar, **@cbar, &@cbar_block if @cbar %>
-
-          <div class="page__main__content">
-            <% if @paper %>
-              <div class="paper">
-                <%= yield %>
-              </div>
-            <% else %>
-              <%= yield %>
-            <% end %>
-          </div>
-        </main>
-      </div>
-    <% end %>
+  <body>
+    <%= yield %>
   </body>
 </html>

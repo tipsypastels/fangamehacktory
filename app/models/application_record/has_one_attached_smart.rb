@@ -13,7 +13,7 @@ module ApplicationRecord::HasOneAttachedSmart
 
       if block
         define_method name do
-          send("real_#{name}") || instance_eval(&block)
+          send("real_#{name}").presence || instance_eval(&block)
         end
       end
 

@@ -19,4 +19,12 @@ class Tag < ApplicationRecord
 
   has_many :taggings
   has_many :subjects, through: :taggings
+
+  acts_as_api
+
+  api_accessible :public do |api|
+    api.add :id
+    api.add :name
+    api.add :slug
+  end
 end

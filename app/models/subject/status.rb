@@ -18,11 +18,17 @@ module Subject::Status
       pinned:    4,
     }
 
-    scope :visible_on_index, -> {
-      where status: %i|pinned featured published|
+    scope :your_drafts, -> {
+      return none unless Current.user
+      draft.where(creator: Current.user)
     }
 
-    scope :ordered_by_promotion_status, -> {
+    scope :visible_on_index, -> {
+      where status: %i|pinned featured published|,
+            subjected_type: Subjected.types.viewable.names
+    }
+
+    scope :ordered_by_status, -> {
       visible_on_index.order status: :desc
     }
   end

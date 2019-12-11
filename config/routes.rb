@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/tag_suggestions/:type', to: 'tag_suggestions#show', as: :tag_suggestions
+
+    get '/subjects/types', to: 'subjects#types'
+    resources :subjects
   end
   
   get '/edit/:id', to: 'editor#edit', as: :editor
@@ -27,7 +30,10 @@ Rails.application.routes.draw do
 
   get '/new', to: 'subjects#new', as: :new_subject 
   post '/new', to: 'subjects#create'
-  get '/:id', to: 'subjects#show', as: :subject
+  # get '/:id', to: 'subjects#show', as: :subject
 
-  root to: 'subjects#index'
+  # root to: 'subjects#index'
+
+  get '/:id', to: 'frontend#app', as: :subject
+  root to: 'frontend#app'
 end

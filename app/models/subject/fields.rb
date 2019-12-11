@@ -8,7 +8,7 @@ module Subject::Fields
 
   def fields
     Rails.cache.fetch("#{cache_key_with_version}/fields") do
-      next { '' => content } if default_fields.is_a?(String)
+      next { '' => content.to_s } if default_fields.is_a?(String)
   
       content
         .to_s

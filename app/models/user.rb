@@ -45,6 +45,7 @@ class User < ApplicationRecord
   acts_as_api
 
   api_accessible :public do |api|
+    api.add :id
     api.add :username
     api.add :type
     api.add :path

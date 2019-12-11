@@ -22,6 +22,10 @@ module Subjected
       self.name
     end
 
+    def plural_human_name
+      human_name.pluralize
+    end
+
     def term
       self.name.downcase
     end
@@ -44,13 +48,14 @@ module Subjected
       api.add ->s { s.class.name }, as: :type
       api.add :css_class
       api.add :human_name
+      api.add :plural_human_name
       api.add :term
       api.add :icon
       api.add :supported_widget_names
     end
   end
 
-  delegate :css_class, :human_name, :term, :viewable_in_principle?,
+  delegate :css_class, :human_name, :plural_human_name, :term, :viewable_in_principle?,
     to: :class
 
   def icon

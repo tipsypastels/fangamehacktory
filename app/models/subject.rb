@@ -54,6 +54,8 @@ class Subject < ApplicationRecord
     api.add :title
     api.add :credit
     api.add :subjected
+    api.add :created_at
+    api.add :updated_at
     api.add ->s { s.description.to_s }, as: :description
     api.add ->s { s.content.to_s }, as: :content
     api.add :fields
@@ -61,10 +63,12 @@ class Subject < ApplicationRecord
     api.add :thumbnail_url
     api.add :creator
     api.add :path
+    api.add :api_path
     api.add :status
     api.add :status_icon
     api.add :views_count
     api.add :unread?, as: :unread
+    api.add :editable?, as: :editable
     api.add :events_count
     api.add :timelined_events_count
     api.add :latest_event
@@ -73,8 +77,16 @@ class Subject < ApplicationRecord
     api.add :overall_rating
   end
 
+  def as_json(*)
+    as_api_response(:public)
+  end
+
   def path
     subject_path self
+  end
+
+  def api_path
+    api_subject_path self
   end
 
   def editable?

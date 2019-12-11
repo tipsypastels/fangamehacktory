@@ -8,13 +8,18 @@ module Subject::Scoped
 
     scope :on_index, ->page {
       collection
-        .ordered_by_promotion_status
+        .ordered_by_status
         .order(updated_at: :desc)
         .paginate(page: page)
     }
 
     scope :on_profile, -> {
       collection.order(updated_at: :desc)
+    }
+
+    scope :of_type, ->type {
+      return all unless type.present?
+      where(subjected_type: type)
     }
   end
 

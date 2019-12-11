@@ -1,0 +1,4 @@
+<%= react_component 'App', 
+  currentUser: Current.user&.as_api_response(:public),
+  viewableTypes: Subjected.types.viewable
+%>

@@ -124,7 +124,11 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
     erubi (1.9.0)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
@@ -140,6 +144,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (4.1.2)
       activesupport (>= 4.2)
+    http_parser.rb (0.6.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.9.3)
@@ -215,6 +220,10 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    react-rails-hot-loader (0.8.0)
+      em-websocket
+      rails
+      react-rails
     regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -326,6 +335,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-erd
   react-rails
+  react-rails-hot-loader
   rspec-rails
   sass-rails (~> 5)
   selenium-webdriver
